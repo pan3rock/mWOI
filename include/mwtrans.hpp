@@ -3,11 +3,12 @@
 
 #include <Eigen/Dense>
 
-class mWtransInt {
+class MWtransInt {
 public:
-  mWtransInt();
+  MWtransInt(double lb, double ub);
 
 private:
+  double lb_, ub_;
 };
 
 #endif
