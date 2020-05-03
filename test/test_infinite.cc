@@ -68,3 +68,42 @@ TEST_CASE("infinite integral 4", "[mW transform Integral]") {
   double exact = 1.0;
   REQUIRE(ret == Approx(exact));
 }
+
+TEST_CASE("benchmark abs", "[mW transform Integral]") {
+  BENCHMARK("abs 1.0e-9") {
+    double abserr = 1.0e-9;
+    double referr = 0.0;
+    MWtransInt mwt(0, 0, abserr, referr);
+    double ret = mwt.perform(func_4);
+  };
+  BENCHMARK("abs 1.0e-7") {
+    double abserr = 1.0e-7;
+    double referr = 0.0;
+    MWtransInt mwt(0, 0, abserr, referr);
+    double ret = mwt.perform(func_4);
+  };
+  BENCHMARK("abs 1.0e-5") {
+    double abserr = 1.0e-5;
+    double referr = 0.0;
+    MWtransInt mwt(0, 0, abserr, referr);
+    double ret = mwt.perform(func_4);
+  };
+  BENCHMARK("ref 1.0e-9") {
+    double abserr = 0.0;
+    double referr = 1.0e-9;
+    MWtransInt mwt(0, 0, abserr, referr);
+    double ret = mwt.perform(func_4);
+  };
+  BENCHMARK("abs 1.0e-7") {
+    double abserr = 0.0;
+    double referr = 1.0e-7;
+    MWtransInt mwt(0, 0, abserr, referr);
+    double ret = mwt.perform(func_4);
+  };
+  BENCHMARK("abs 1.0e-5") {
+    double abserr = 0.0;
+    double referr = 1.0e-5;
+    MWtransInt mwt(0, 0, abserr, referr);
+    double ret = mwt.perform(func_4);
+  };
+}

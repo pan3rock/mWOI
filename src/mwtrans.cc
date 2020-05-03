@@ -31,8 +31,8 @@ MWtransInt::MWtransInt(double lb, double v, double abserr, double referr)
 double MWtransInt::MWtransInt::perform(std::function<double(double)> functor) {
   // int_lb^z0 functor
   double error;
-  double int1 = gauss_kronrod<double, 61>::integrate(functor, lb_, zeros_(0), 0,
-                                                     0, &error);
+  double int1 = gauss_kronrod<double, 15>::integrate(functor, lb_, zeros_(0),
+                                                     abserr_, referr_, &error);
 
   // int_z0^\infty functor
   ArrayXXd aM = ArrayXXd::Zero(niter_, niter_);
@@ -47,8 +47,8 @@ double MWtransInt::MWtransInt::perform(std::function<double(double)> functor) {
   double left = zeros_(i0++);
   double right = zeros_(i0++);
 
-  double fxs =
-      gauss_kronrod<double, 15>::integrate(functor, left, right, 0, 0, &error);
+  double fxs = gauss_kronrod<double, 15>::integrate(functor, left, right,
+                                                    abserr_, referr_, &error);
   left = right;
   right = zeros_(i0++);
   x(0) = right;
@@ -59,8 +59,8 @@ double MWtransInt::MWtransInt::perform(std::function<double(double)> functor) {
   double errorbound = 0.0;
 
   while (count < niter_ - 3 && diff > errorbound) {
-    double phixs = gauss_kronrod<double, 15>::integrate(functor, left, right, 0,
-                                                        0, &error);
+    double phixs = gauss_kronrod<double, 15>::integrate(
+        functor, left, right, abserr_, referr_, &error);
     if (phixs == 0 || abs(phixs) < 1.0e-100) {
       diff = 0.0;
       break;
