@@ -5,8 +5,8 @@ cmake_policy(SET CMP0048 NEW)
 project(mWOI VERSION 0.1)
 set(CMAKE_CXX_STANDARD 17)
 
-# set(CMAKE_CXX_FLAGS "-Wall -g -fPIC -O2 -march=native")
-set(CMAKE_CXX_FLAGS "-Wall -g -fPIC")
+set(CMAKE_CXX_FLAGS "-Wall -g -fPIC -O2 -march=native")
+# set(CMAKE_CXX_FLAGS "-Wall -g -fPIC")
 
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 include_directories(${EIGEN3_INCLUDE_DIR})
