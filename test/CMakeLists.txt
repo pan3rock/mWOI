@@ -4,6 +4,8 @@ set(FILE_TEST
     ${FILE_SRC}
     test_main.cc
     test_finite.cc
+    test_complex.cc
+    functions.cc
     test_infinite.cc)
 
 add_executable(unit_test

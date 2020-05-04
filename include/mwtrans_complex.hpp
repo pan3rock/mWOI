@@ -2,18 +2,20 @@
 #define MWTRANS_H_
 
 #include <Eigen/Dense>
+#include <complex>
 #include <functional>
 
-class MWtransInt {
+class MWtransIntComplex {
 public:
-  MWtransInt(double lb, double v, double abserr, double referr, int max_depth);
+  MWtransIntComplex(double lb, double v, double abserr, double referr);
 
-  double perform(std::function<double(double)> functor);
+  std::complex<double>
+  perform(std::function<std::complex<double>(double)> functor);
 
 private:
   const int nzero_ = 100;
   const int niter_ = 100;
-  const unsigned max_depth_;
+  const unsigned max_depth_ = 15;
 
   Eigen::ArrayXd zeros_;
   double lb_, ub_, v_;
